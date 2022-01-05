@@ -1,17 +1,19 @@
 import { useState } from 'react';
 
+import Basket from './Basket';
 import Header from './Header';
 import BasketList from './BasketList';
 import GoodsList from './GoodsList';
 import Search from './Search';
 
 import { goods } from '../data/goods';
+import { Container } from '@material-ui/core';
 
 const App = () => {
     const [order, setOrder] = useState([]);
     const [search, setSearch] = useState('');
     const [products, setProducts] = useState(goods);
-    const [array, setArray] = useState([]);
+    const [isCartOpen, setIsCartOpen] = useState(false);
 
     const handleChange = (e) => {
         if (!e.target.value) {
@@ -68,8 +70,12 @@ const App = () => {
 
     return (
         <>
-            <Header />
-            
+            <Header
+                handleCart={() => setIsCartOpen(true)} 
+            />
+            <Container                
+                style={{ marginTop: "1rem" }}
+            >
                     <Search
                         value={search}
                         onChange={handleChange}
@@ -78,10 +84,13 @@ const App = () => {
                         goods={products}
                         setOrder={addToOrder}
                     />
-                    <BasketList
-                        order={order}
-                        setOrder={removeFromOrder}
-                    />
+            </Container>
+            <Basket 
+                order={order}
+                removeFromOrder={removeFromOrder}
+                cartOpen={isCartOpen}
+                closeCart={() => setIsCartOpen(false)}
+            />
         </>
     );    
 }

@@ -10,7 +10,7 @@ const Search = (props) => {
             onChange={onChange} 
             label="Search"
             variant="outlined"
-            fullWidth
+            style={{ marginBottom: "1rem", width: "400px" }}
         />
     );    
 };
