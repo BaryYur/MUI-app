@@ -11,6 +11,7 @@ const App = () => {
     const [order, setOrder] = useState([]);
     const [search, setSearch] = useState('');
     const [products, setProducts] = useState(goods);
+    const [array, setArray] = useState([]);
 
     const handleChange = (e) => {
         if (!e.target.value) {
