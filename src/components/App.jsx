@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 import Basket from './Basket';
 import Header from './Header';
-import BasketList from './BasketList';
 import GoodsList from './GoodsList';
 import Search from './Search';
+import Snack from './Snack';
 
 import { goods } from '../data/goods';
 import { Container } from '@material-ui/core';
@@ -14,6 +14,7 @@ const App = () => {
     const [search, setSearch] = useState('');
     const [products, setProducts] = useState(goods);
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const [isSnackOpen, setIsSnackOpen] = useState(false);
 
     const handleChange = (e) => {
         if (!e.target.value) {
@@ -62,6 +63,8 @@ const App = () => {
                 ],
             );
         }
+
+        setIsSnackOpen(true);
     };
 
     const removeFromOrder = (goodsItem) => {
@@ -72,6 +75,7 @@ const App = () => {
         <>
             <Header
                 handleCart={() => setIsCartOpen(true)} 
+                orderLen={order.length}
             />
             <Container                
                 style={{ marginTop: "1rem" }}
@@ -90,6 +94,10 @@ const App = () => {
                 removeFromOrder={removeFromOrder}
                 cartOpen={isCartOpen}
                 closeCart={() => setIsCartOpen(false)}
+            />
+            <Snack
+                isOpen={isSnackOpen}
+                handleClose={() => setIsSnackOpen(false)} 
             />
         </>
     );    

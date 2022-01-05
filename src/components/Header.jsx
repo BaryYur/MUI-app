@@ -1,7 +1,7 @@
-import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
+import { AppBar, Toolbar, Badge, IconButton, Typography } from '@material-ui/core';
 import { ShoppingBasket } from '@mui/icons-material';
 
-function Header (props) {
+function Header ({ handleCart, orderLen }) {
     return (
         <AppBar position="static">
             <Toolbar>
@@ -15,9 +15,14 @@ function Header (props) {
                 </Typography>
                 <IconButton
                     color="inherit"
-                    onClick={props.handleCart}
+                    onClick={handleCart}
                 >
-                    <ShoppingBasket />
+                    <Badge //circle with numbers
+                        color="secondary"
+                        badgeContent={orderLen}
+                    >
+                        <ShoppingBasket />
+                    </Badge>
                 </IconButton>
             </Toolbar>
         </AppBar>
